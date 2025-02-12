@@ -1,0 +1,11 @@
+import csv
+
+file_path = '/e:/Repositories/CNNs_hack/submission.csv'
+
+with open(file_path, mode='r') as file:
+    csv_reader = csv.DictReader(file)
+    emotions = set()
+    for row in csv_reader:
+        emotions.add(row['Emotion'])
+
+print(emotions)
