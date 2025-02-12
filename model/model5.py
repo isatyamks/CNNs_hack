@@ -9,7 +9,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 df_train = pd.read_csv("Dataset\\train.csv")
 image_dir = "Dataset\\Images"
-image_size = (48, 48) 
+image_size = (224, 224) 
 
 
 X_train, y_train = [], []
@@ -27,11 +27,11 @@ for _, row in df_train.iterrows():
             y_train.append(label_mapping[emotion])
 
 X_train = np.array(X_train) / 255.0  
-X_train = X_train.reshape(-1, 48, 48, 1)  
+X_train = X_train.reshape(-1, 224, 224, 1)  
 y_train = tf.keras.utils.to_categorical(y_train, num_classes=8) 
 
 model = Sequential([
-    Conv2D(64, (3,3), activation='relu', input_shape=(48,48,1)),
+    Conv2D(64, (3,3), activation='relu', input_shape=(224,224,1)),
     MaxPooling2D(2,2),
     Conv2D(128, (3,3), activation='relu'),
     MaxPooling2D(2,2),
